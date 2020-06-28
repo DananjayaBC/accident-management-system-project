@@ -1,0 +1,203 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Graph.master.cs" Inherits="WebApplication3.Graph" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <script type="text/javascript">
+        function display_c() {
+            var refresh = 1000; // Refresh rate in milli seconds
+            mytime = setTimeout('display_ct()', refresh)
+        }
+
+        function display_ct() {
+            var strcount
+            var x = new Date()
+            document.getElementById('Panel1').innerHTML = x;
+            tt = display_c();
+        }
+</script>
+    <title>E - Police : Online Crime Reporting System </title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+       
+        .button-main {
+	background-color: #183883;
+	float: left;
+	height: 50px;
+	width: 100%;
+	margin:0px auto;
+	margin-top: 10px;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-top-color: #0f2459;
+	border-bottom-color: #0f2459;
+}
+.btn {
+	height: 50px;
+	width: 1033px;
+	margin:0px auto;
+}
+
+.btn ul
+{
+	padding:0px;
+	margin:0px auto;
+	margin-top:8px;
+}
+
+.btn li{
+	display: inline;
+	margin: 0px auto;
+	text-align: center;
+	border-right: 1px solid #214aa9;
+	float:left;
+            width: 195px;
+        }
+
+.btn a {
+	font-family: Roboto;
+	font-size: 18px;
+	color: #FFF;
+	text-decoration: none;
+	border: 1px solid #183883;
+	border-radius:3px;
+	font-weight:500;
+	display:block;
+	border-right: 1px solid #112960;
+	padding:0px 25px;
+	line-height:35px;
+}
+
+
+.btn a:hover {
+	border: 1px solid #FFF;
+}
+.btn .active {
+	border: 1px solid #FFF;
+}
+
+
+
+        .auto-style1
+        {
+            width: 100%;
+            height: 150px;
+        }
+        .auto-style2
+        {
+            width: 132px;
+            height: 150px;
+        }
+        .auto-style3
+        {
+            width: 224px;
+        }
+        
+
+
+        .auto-style5
+        {
+            width: 1112px;
+        }
+
+     
+
+        .auto-style6
+        {
+            width: 168px;
+            height: 99px;
+            margin-left: 110px;
+            margin-right: 0px;
+            margin-top: 0px;
+        }
+.footer-main {
+	background-color: #143584;
+	float: left;
+	width: 100%;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #FFF;
+}
+
+        </style>
+</head>
+<body onload=display_ct();>
+        
+    <form id="form1" runat="server">
+    <div style="height: 153px">
+
+
+            <table class="auto-style1">
+                <tr>
+                    <td class="auto-style3">
+                        <img class="auto-style2" src="img/2.png" /></td>
+                    <td class="auto-style5" background="img/1.jpg">
+                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                       <a href="#" style="color:#FFFFFF; text-decoration:none; text-align:center ;font-weight:bold; height:36px; font-size:26px; text-transform:uppercase;">Our Mission - City Without Accident</a>
+
+                        </td>
+                      
+                    <td>
+                        <img class="auto-style6" src="img/3.png" /><br />
+                        <br />
+                       
+                    </td>
+                    
+                </tr>
+            </table>
+
+
+        </div>
+
+  <div class="button-main">
+  <div class="btn">
+      <ul>
+        <li><a href="Home.aspx">HOME</a></li>
+        <li><a class="" href="About.aspx" data-flexmenu="flexmenu1" stylez="position:relative;left:900px;top:200px">MAP</a></li>
+        <li><a class="" href="UserRegistration.aspx" data-flexmenu="flexmenu2" stylez="position:relative;left:900px;top:200px">GRAPH</a><span class="btn-line"></span></li>
+        
+      
+</div>
+       
+    </div>
+        
+       <br />
+       <br />
+         <br />
+    <div>
+
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+        </asp:ContentPlaceHolder>
+
+    </div>
+      
+    </form>
+    <div class="footer-main">
+    <table align="center" border="0" cellpadding="0" cellspacing="0">
+      <tbody><tr>
+        <td align="left" style="color:white;">&copy; 2020 All Right Reserved | Design and Developed By Dananjaya Jayalath
+          
+        </td>
+        <td align="right">&nbsp;</td>
+           </tr>
+    </tbody></table>
+        <table style="color:white" >
+            <tr><td>
+                Best viewed in 1024*768 pixel resolution.<br />
+        256 bit Secured Socket Server (SSL)<br />
+        Digital Certification<br />
+        Secured Login Page
+
+                </td></tr>
+
+        </table>
+  </div>
+    </body>
+</html>
+

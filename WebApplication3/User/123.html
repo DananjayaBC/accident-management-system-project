@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title></title>
+</head>
+<body>
+    <div>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMa-XKVjFUsqYlpWThcU-W-JqI9Z9Mf1U&callback=initMap"></script>
+        <script type="text/javascript">
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+                    document.getElementById("<%=hfLat.ClientID %>").value = latitude;
+                    document.getElementById("<%=hfLon.ClientID %>").value = longitude;
+                    var coords = new google.maps.LatLng(latitude, longitude);
+                    var mapOptions = {
+                        zoom: 15,
+                        center: coords,
+                        mapTypeControl: true,
+                        navigationControlOptions: {
+                            style: google.maps.NavigationControlStyle.SMALL
+                        },
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    };
+                    map = new google.maps.Map(
+                        document.getElementById("mapContainer"), mapOptions
+                    );
+                    var marker = new google.maps.Marker({
+                        position: coords,
+                        map: map,
+                        title: "Your current location!"
+                    });
+
+                });
+            } else {
+                alert("Geolocation API is not supported in your browser.");
+            }
+
+            function GetAddress() {
+                var lat = parseFloat(document.getElementById("<%=hfLat.ClientID %>").value);
+                var lng = parseFloat(document.getElementById("<%=hfLon.ClientID %>").value);
+                var latlng = new google.maps.LatLng(lat, lng);
+                var geocoder = geocoder = new google.maps.Geocoder();
+                geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        if (results[1]) {
+                            document.getElementById("<%=hfAddress.ClientID %>").value = results[1].formatted_address;
+                            Address = results[1].formatted_address;
+                            localStorage.setItem("Address", Address);
+                        }
+                    }
+                });
+            }
+
+            function GetAddressDetails() {
+                GetAddress();
+                document.getElementById("<%=hfAddress.ClientID%>").value = localStorage.getItem("Address");
+                localStorage.removeItem("Address");
+            }
+        </script>
+        <style type="text/css">
+            #mapContainer {
+                height: 300px;
+                width: 500px;
+                border: 10px solid #eaeaea;
+            }
+        </style>
+        <div id="mapContainer">
+        </div>
+        <asp:HiddenField ID="hfLat" runat="server" />
+        <asp:HiddenField ID="hfLon" runat="server" />
+        <asp:HiddenField ID="hfAddress" runat="server" />
+        <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="Save" OnClientClick="GetAddressDetails()" />
+        <div>
+            <table id="tblDetails" runat="server" border="0" cellpadding="0" cellspacing="0"
+                   visible="false">
+                <tr>
+                    <td>
+                        latitude :
+                    </td>
+                    <td>
+                        <asp:Label ID="lblLatitude" runat="server" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        longitude :
+                    </td>
+                    <td>
+                        <asp:Label ID="lblLongitude" runat="server" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Address :
+                    </td>
+                    <td>
+                        <asp:Label ID="lblAddress" runat="server" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
